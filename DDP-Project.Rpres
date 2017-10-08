@@ -1,0 +1,76 @@
+DDP-Project
+========================================================
+author: Praveen Kaushik
+date: 10/9/2017
+autosize: true
+
+Project Details
+========================================================
+<small>
+This project consists of two modules:
+
+1. Development of a Shiny application and deployment on Rstudio's server.
+2. Creation of a reproducible pitch presentation that describes the application.
+
+<br><br>
+The visualization of earthquake data was chosen as the topic for this project:
+
+The US Geological Survey maintains a realtime database of global seismic events [[3]](http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php). 
+This data is updated every 15 minutes. The Shiny App developed for this project downloads this data and allows to visualize seismic events in california.
+
+The link to the Shiny App is:
+[[1]](https://praveenkaushik.shinyapps.io/DDP-Project/)
+</small>
+
+Data Processing
+========================================================
+<small>
+The Quake Shiny App does the following
+* Download the latest feed file of earthquakes in the past 30 days,
+* Filters the data to ```place``` containing the word "California"
+* Filters the data further according to the user input in the app
+* Displays the earthquake location on the map, the circles sized according to magnitude of quake.
+* Creates a histogram of magnitude triggered by a button click.
+</small>
+
+Data
+========================================================
+<small>The USGS data used in the app is the 30-day list of all global seismic events:
+```{r, echo=TRUE}
+URL <- "http://earthquake.usgs.gov/earthquakes/feed/v1.0/
+summary/all_month.csv"
+Quake_30days <- read.table(URL, sep = ",", header = T)
+```
+It contains multiple variables.
+```{r}
+names(Quake_30days)
+```
+</small>
+
+Quake Shiny App
+========================================================
+
+<div align="top">
+<img src="Quake_Screenshot_App.png" width=600 height=350>
+</div>
+<small>
+Usage:
+* Use Date Selector to select event date during the past 30 days
+* Use Magnitude Selector to filter magnitude range
+* Press "Update Histogram" to create histogram of magnitude distribution
+</small>
+
+References:
+========================================================
+<small>
+[1]: The application may be found at : [https://praveenkaushik.shinyapps.io/DDP-Project/](https://praveenkaushik.shinyapps.io/DDP-Project/)
+
+[2]: The code for the application and this presentation may be found at 
+[https://github.com/praveenkaushik80/DDP](https://github.com/praveenkaushik80/DDP) 
+
+[3]: USGS Real-time Earthquake Feeds - 
+[http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php](http://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php)
+
+[4]: This presentation is published in Rpubs at :
+[http://rpubs.com/praveenkaushik80/](http://rpubs.com/praveenkaushik80/)
+</small>
